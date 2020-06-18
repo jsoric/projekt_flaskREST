@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-section">
+    <form method="POST" novalidate>
+        {{ adminLogin.csrf_token() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ adminLogin.email.label(class="form-control-label") }}
+                {% if adminLogin.email.errors %}
+                    {{ adminLogin.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in adminLogin.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ adminLogin.email(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ adminLogin.password.label(class="form-control-label") }}
+                {% if adminLogin.password.errors %}
+                    {{ adminLogin.password(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in adminLogin.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ adminLogin.password(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ adminLogin.login(class="btn btn-outline-info") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock content %}
